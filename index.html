@@ -4,178 +4,245 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Al-Hajjan - HSE Training Verification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* إعدادات الصفحة والخلفية البيضاء الصافية */
+        /* إعدادات الصفحة الأساسية بخلفية بيضاء */
         body {
             background-color: #ffffff;
             font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            overflow: hidden; /* لمنع ظهور شريط التمرير بسبب الأشكال العائمة */
             color: #333;
+            position: relative;
         }
 
-        /* الكارت الرئيسي */
+        /* --- تصميمات الخلفية الاحترافية (الشغل العالي) --- */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #003366, #00509e);
+            top: -150px;
+            right: -100px;
+            opacity: 0.08;
+            filter: blur(40px);
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #001a33, #002244);
+            bottom: -100px;
+            left: -100px;
+            opacity: 0.06;
+            filter: blur(50px);
+            animation-delay: -4s;
+        }
+        
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #00509e, #00a8ff);
+            top: 30%;
+            left: 15%;
+            opacity: 0.05;
+            filter: blur(30px);
+            animation-duration: 12s;
+        }
+
+        /* حركة الطفو الناعمة للأشكال */
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1) rotate(0deg); }
+            50% { transform: translateY(-30px) scale(1.05) rotate(5deg); }
+            100% { transform: translateY(0px) scale(1) rotate(0deg); }
+        }
+
+        /* --- الكارت الرئيسي (تصميم زجاجي فاخر) --- */
         .container {
-            background-color: #ffffff;
-            padding: 50px 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-            border: 1px solid #f0f0f0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 50px 45px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 51, 102, 0.08);
+            border: 1px solid rgba(0, 51, 102, 0.1);
             text-align: center;
             width: 100%;
-            max-width: 550px;
+            max-width: 580px;
             position: relative;
-            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
 
-        /* شريط علوي للزينة يتماشى مع الهوية البصرية */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, #002244, #00509e);
+        .container:hover {
+            box-shadow: 0 25px 70px rgba(0, 51, 102, 0.12);
         }
 
-        /* العناوين */
+        /* العناوين والشعارات */
         .header-title {
             color: #002244;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
             letter-spacing: -0.5px;
         }
         
         .sub-title {
             color: #64748b;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
-        /* حقل الإدخال */
-        .input-group {
+        /* حقل الإدخال المتطور */
+        .input-wrapper {
             position: relative;
             margin-bottom: 25px;
         }
 
         input {
             width: 100%;
-            padding: 16px 20px;
+            padding: 18px 25px;
             border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 14px;
+            font-size: 17px;
             font-family: 'Tajawal', sans-serif;
+            font-weight: 500;
             text-align: center;
             box-sizing: border-box;
-            transition: all 0.3s ease;
-            background-color: #f8fafc;
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #1e293b;
         }
 
         input:focus {
             outline: none;
-            border-color: #00509e;
+            border-color: #003366;
             background-color: #ffffff;
-            box-shadow: 0 0 0 4px rgba(0, 80, 158, 0.1);
+            box-shadow: 0 0 0 5px rgba(0, 51, 102, 0.1);
+            transform: translateY(-2px);
         }
 
         input::placeholder {
             color: #94a3b8;
+            font-weight: 400;
         }
 
-        /* زر البحث */
+        /* زر البحث بتدرج لوني ولمسة حركية */
         button {
             background: linear-gradient(135deg, #003366 0%, #001a33 100%);
             color: white;
             border: none;
-            padding: 16px 40px;
-            border-radius: 10px;
+            padding: 18px 40px;
+            border-radius: 14px;
             cursor: pointer;
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 700;
             font-family: 'Tajawal', sans-serif;
             width: 100%;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 51, 102, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0, 51, 102, 0.3);
+        }
+
+        button:hover::after {
+            left: 100%;
         }
 
         button:active {
             transform: translateY(1px);
         }
 
-        /* منطقة النتائج */
+        /* منطقة النتائج والأنيميشن */
         #result {
-            margin-top: 30px;
-            font-size: 15px;
+            margin-top: 35px;
+            font-size: 16px;
             line-height: 1.7;
             text-align: right;
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* صناديق الرسائل */
         .success-box {
             padding: 25px;
-            border-radius: 12px;
-            background-color: #f8fff9;
-            border: 1px solid #cce5ff;
-            border-right: 5px solid #28a745;
+            border-radius: 16px;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.08);
+            border-right: 6px solid #28a745;
         }
 
         .error-box {
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 16px;
             background-color: #fff5f5;
             color: #e53e3e;
             border: 1px solid #fed7d7;
+            border-right: 6px solid #e53e3e;
             text-align: center;
             font-weight: 700;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.08);
         }
 
         .status-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: #d4edda;
             color: #155724;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 14px;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 15px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        /* جدول البيانات */
+        /* جدول البيانات الأنيق */
         .data-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin-top: 15px;
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #edf2f7;
+            margin-top: 10px;
         }
 
         .data-table th, .data-table td {
-            padding: 14px 16px;
+            padding: 16px;
             text-align: right;
-            border-bottom: 1px solid #edf2f7;
+            border-bottom: 1px solid #f1f5f9;
         }
 
         .data-table tr:last-child th,
@@ -184,20 +251,29 @@
         }
 
         .data-table th {
-            background-color: #f8fafc;
             width: 35%;
-            color: #475569;
+            color: #64748b;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .data-table td {
-            color: #1e293b;
-            font-weight: 500;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .cert-number-highlight {
+            font-family: 'Segoe UI', monospace;
+            font-size: 16px;
+            color: #003366;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 1px;
         }
         
         .loading-text {
-            color: #00509e;
+            color: #003366;
             font-weight: 700;
             text-align: center;
         }
@@ -205,15 +281,19 @@
 </head>
 <body>
 
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
     <div class="container">
-        <div class="header-title">Al-Hajjan Drilling Company</div>
-        <div class="sub-title">نظام التحقق من الشهادات التدريبية (HSE Training)</div>
+        <div class="header-title">Al-Hajjan Drilling</div>
+        <div class="sub-title">نظام التحقق المتقدم للشهادات (HSE Verification)</div>
         
-        <div class="input-group">
-            <input type="text" id="certInput" placeholder="أدخل رقم الشهادة (مثال: HDC260209HR01)">
+        <div class="input-wrapper">
+            <input type="text" id="certInput" placeholder="أدخل رقم الشهادة هنا...">
         </div>
         
-        <button onclick="verifyCertificate()">التحقق من السجلات</button>
+        <button onclick="verifyCertificate()">بحث في السجلات</button>
         
         <div id="result"></div>
     </div>
@@ -223,7 +303,7 @@
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
 
         function getVal(row, index) {
-            if (!row || !row.c || !row.c[index] || row.c[index].v === null) return '<span style="color:#a0aec0;">غير متوفر</span>';
+            if (!row || !row.c || !row.c[index] || row.c[index].v === null) return '<span style="color:#cbd5e1;">غير متوفر</span>';
             return row.c[index].f ? row.c[index].f : row.c[index].v;
         }
 
@@ -232,15 +312,15 @@
             const resultDiv = document.getElementById('result');
             
             if (!certNoInput) {
-                showResult('⚠️ يرجى إدخال رقم الشهادة أولاً للتحقق.', 'error-box');
+                showResult('⚠️ يرجى إدخال رقم الشهادة في المربع أعلاه.', 'error-box');
                 return;
             }
 
-            showResult('<div class="loading-text">⏳ جاري الاتصال بقاعدة البيانات والبحث...</div>', 'success-box');
+            showResult('<div class="loading-text">⏳ جاري معالجة البيانات والتحقق من السجلات...</div>', 'success-box');
             
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Network response was not ok');
+                if (!response.ok) throw new Error('Network Error');
                 
                 const text = await response.text();
                 const jsonString = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
@@ -249,7 +329,7 @@
                 
                 let isFound = false;
 
-                // الأعمدة: EMID(0), NAME(1), IQAMA(2), COURSE(3), DATE(4), EXPIRY(5), TTT(6), CERTNO(7)
+                // EMID(0), NAME(1), IQAMA(2), COURSE(3), DATE(4), EXPIRY(5), TTT(6), CERTNO(7)
                 for (let i = 0; i < rows.length; i++) {
                     const certNoCell = getVal(rows[i], 7).toString().replace(/<[^>]*>?/gm, '').trim().toUpperCase(); 
                     
@@ -266,14 +346,14 @@
 
                         showResult(`
                             <div style="text-align: center;">
-                                <div class="status-badge">✓ الشهادة معتمدة ومسجلة</div>
+                                <div class="status-badge">✓ شهادة معتمدة رسمياً</div>
                             </div>
                             <table class="data-table">
-                                <tr><th>رقم الشهادة</th><td style="font-family: monospace; font-size: 15px; color: #00509e;"><strong>${certNoCell}</strong></td></tr>
-                                <tr><th>الاسم (NAME)</th><td>${name}</td></tr>
+                                <tr><th>رقم الشهادة</th><td><span class="cert-number-highlight">${certNoCell}</span></td></tr>
+                                <tr><th>اسم المتدرب</th><td>${name}</td></tr>
                                 <tr><th>الرقم الوظيفي</th><td>${emid}</td></tr>
                                 <tr><th>رقم الإقامة</th><td>${iqama}</td></tr>
-                                <tr><th>اسم الدورة</th><td><strong>${course}</strong></td></tr>
+                                <tr><th>التخصص / الدورة</th><td style="color:#003366;">${course}</td></tr>
                                 <tr><th>تاريخ الإصدار</th><td>${date}</td></tr>
                                 <tr><th>تاريخ الانتهاء</th><td>${expiry}</td></tr>
                                 <tr><th>جهة التدريب</th><td>${ttt}</td></tr>
@@ -284,23 +364,16 @@
                 }
 
                 if (!isFound) {
-                    showResult('❌ عذراً، رقم الشهادة غير صحيح أو غير مدرج في السجلات الرسمية.', 'error-box');
+                    showResult('❌ عذراً، رقم الشهادة غير مطابق لأي سجل معتمد لدينا.', 'error-box');
                 }
 
             } catch (error) {
                 console.error("Fetch Error:", error);
-                showResult('⚠️ حدث خطأ أثناء جلب البيانات. يرجى المحاولة لاحقاً.', 'error-box');
+                showResult('⚠️ حدث خطأ في الاتصال بالخوادم. يرجى التأكد من اتصالك بالإنترنت والمحاولة مجدداً.', 'error-box');
             }
         }
 
-        function showResult(message, className) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = message;
-            resultDiv.className = className;
-            resultDiv.style.display = 'block';
-        }
-
-        // إضافة ميزة البحث عند الضغط على زر Enter في الكيبورد
+        // دعم البحث بالضغط على زر Enter
         document.getElementById("certInput").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
